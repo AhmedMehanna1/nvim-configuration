@@ -15,9 +15,17 @@ keymap.set("n", "<leader>sh", "<C-w>v", { desc = "Split window vertically" }) --
 keymap.set("n", "<leader>sv", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+keymap.set("n", "<leader>sdh", "<C-w>-", { desc = "Decrease split height" })
+keymap.set("n", "<leader>sih", "<C-w>+", { desc = "Increase split height" })
+keymap.set("n", "<leader>sdw", "<C-w><", { desc = "Decrease split width" })
+keymap.set("n", "<leader>siw", "<C-w>>", { desc = "Increase split width" })
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+keymap.set("n", "<leader>th", "<C-w>v<cmd>terminal<cr>", { desc = "Open terminal horizontally" })
+keymap.set("n", "<leader>tv", "<C-w>s<cmd>terminal<cr>", { desc = "Open terminal vertically" })
+keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Switch to Normal mode from Terminal" })
