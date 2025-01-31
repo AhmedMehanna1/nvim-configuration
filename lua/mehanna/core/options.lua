@@ -1,8 +1,12 @@
 vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd([[colorscheme vim]])
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  pattern = { "*" },
+  command = "silent! wall",
+  nested = true,
+})
 
 local opt = vim.opt
-
 
 opt.relativenumber = true
 opt.number = true
