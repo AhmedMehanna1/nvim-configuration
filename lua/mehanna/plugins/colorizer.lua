@@ -21,7 +21,7 @@ return {
         RGBA = true, -- #RGBA hex codes
         RRGGBB = true, -- #RRGGBB hex codes
         RRGGBBAA = true, -- #RRGGBBAA hex codes
-        AARRGGBB = true, -- 0xAARRGGBB hex codes
+        AARRGGBB = false, -- 0xAARRGGBB hex codes
         rgb_fn = false, -- CSS rgb() and rgba() functions
         hsl_fn = false, -- CSS hsl() and hsla() functions
         css = false, -- Enable all CSS *features*:
