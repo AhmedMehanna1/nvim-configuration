@@ -28,6 +28,7 @@ return {
     })
 
     mason_lspconfig.setup({
+      automatic_installation = { "rust_analyzer" },
       -- list of servers for mason to install
       ensure_installed = {
         "angularls",
@@ -47,6 +48,7 @@ return {
         "graphql",
         "emmet_ls",
         "taplo",
+        -- "java-language-server",
       },
     })
 
