@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" }) 
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
@@ -30,3 +30,10 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 keymap.set("n", "<leader>th", "<C-w>v<cmd>terminal<cr>", { desc = "Open terminal horizontally" })
 keymap.set("n", "<leader>tv", "<C-w>s<cmd>terminal<cr>", { desc = "Open terminal vertically" })
 keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Switch to Normal mode from Terminal" })
+
+vim.cmd("nnoremap <silent> <C-j> :m .+1<CR>==")
+vim.cmd("nnoremap <silent> <C-k> :m .-2<CR>==")
+vim.cmd("inoremap <silent> <C-j> <Esc>:m .+1<CR>==gi")
+vim.cmd("inoremap <silent> <C-k> <Esc>:m .-2<CR>==gi")
+vim.cmd("vnoremap <silent> <C-j> :m '>+1<CR>gv=gv")
+vim.cmd("vnoremap <silent> <C-k> :m '<-2<CR>gv=gv")

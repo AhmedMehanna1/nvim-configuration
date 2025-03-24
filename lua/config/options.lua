@@ -1,31 +1,6 @@
 vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd([[colorscheme vim]])
 
--- vim.opt.updatetime = 1000
---
--- vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "CursorHold", "CursorHoldI" }, {
---   pattern = "*",
---   command = "silent! wall",
--- })
-
--- vim.api.nvim_create_autocmd("TextChanged", {
---   pattern = "*",
---   callback = function()
---     if vim.api.nvim_get_mode().mode ~= "i" then
---       vim.cmd("silent! wall")
---     end
---   end,
--- })
-
-vim.api.nvim_create_autocmd({
-  "InsertLeave",
-  "TextChanged",
-}, {
-  pattern = { "*" },
-  command = "silent! wall",
-  nested = true,
-})
-
 local opt = vim.opt
 
 opt.relativenumber = true
