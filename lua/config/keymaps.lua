@@ -11,8 +11,8 @@ keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- incremen
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
 
 -- window management
-keymap.set("n", "<leader>sh", "<C-w>v", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>sv", "<C-w>s", { desc = "Split window vertically" }) -- split window vertically
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>ss", "<C-w>W", { desc = "Switch window" }) -- switch window
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
@@ -27,8 +27,8 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
-keymap.set("n", "<leader>th", "<C-w>v<cmd>terminal<cr>", { desc = "Open terminal horizontally" })
-keymap.set("n", "<leader>tv", "<C-w>s<cmd>terminal<cr>", { desc = "Open terminal vertically" })
+keymap.set("n", "<leader>th", "<C-w>s<cmd>terminal<cr>", { desc = "Open terminal horizontally" })
+keymap.set("n", "<leader>tv", "<C-w>v<cmd>terminal<cr>", { desc = "Open terminal vertically" })
 keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Switch to Normal mode from Terminal" })
 
 vim.cmd("nnoremap <silent> <C-j> :m .+1<CR>==")
@@ -37,3 +37,9 @@ vim.cmd("inoremap <silent> <C-j> <Esc>:m .+1<CR>==gi")
 vim.cmd("inoremap <silent> <C-k> <Esc>:m .-2<CR>==gi")
 vim.cmd("vnoremap <silent> <C-j> :m '>+1<CR>gv=gv")
 vim.cmd("vnoremap <silent> <C-k> :m '<-2<CR>gv=gv")
+
+vim.api.nvim_create_user_command("RustLsp", function()
+    local rust_lsp = require("plugins.lsp.rust")
+    rust_lsp.setup()
+    vim.notify("Rust LSP reloaded!", vim.log.levels.INFO)
+end, {})

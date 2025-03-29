@@ -7,8 +7,8 @@ opt.relativenumber = true
 opt.number = true
 
 -- tabs & indentation
-opt.tabstop = 2 -- 2 spaces fortokyonight tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
+opt.tabstop = 4 -- 2 spaces fortokyonight tabs (prettier default)
+opt.shiftwidth = 4 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
@@ -38,9 +38,3 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
-
--- LSP Server to use for Rust.
--- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer.
--- only for diagnostics. The rest of LSP support will still be
--- provided by rust-analyzer.
-vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
