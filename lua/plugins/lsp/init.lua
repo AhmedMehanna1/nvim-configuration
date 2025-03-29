@@ -1,4 +1,5 @@
 return {
+    { import = "plugins.lsp.lspconfig" },
     { import = "plugins.lsp.mason" }, -- Load Mason LSP
     { import = "plugins.lsp.rust" }, -- Load Rust LSP configuration
     { import = "plugins.lsp.go" }, -- Load Go LSP configuration
