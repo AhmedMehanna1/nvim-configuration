@@ -76,5 +76,6 @@ return {
         require("plugins.lsp.config.json") -- Load JSON, LSP configuration
         require("plugins.lsp.config.yaml") -- Load YAML LSP configuration
         require("plugins.lsp.config.xml") -- Load XML LSP configuration
+        require("plugins.lsp.config.bash") -- Load BASH LSP configuration
     end,
 }

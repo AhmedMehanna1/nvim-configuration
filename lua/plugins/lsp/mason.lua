@@ -22,6 +22,8 @@ return {
             "stylua", -- lua formatter
             "lua-language-server",
             "typescript-language-server",
+            "bash-language-server",
+            "shellcheck",
         })
     end,
 }
