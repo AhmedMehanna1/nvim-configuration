@@ -80,3 +80,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
     command = "!prettier --write % && eslint_d %",
 })
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("HighlightYank", { clear = true }),
+    callback = function()
+        -- Highlight the yanked text for 200 milliseconds
+        vim.highlight.on_yank({
+            higroup = "IncSearch", -- Use the IncSearch highlight group
+            timeout = 200, -- Duration of the highlight in milliseconds
+        })
+    end,
+})

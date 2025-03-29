@@ -2,7 +2,6 @@ return {
     "williamboman/mason.nvim", -- Mason for managing LSP servers and tools
     dependencies = {
         "williamboman/mason-lspconfig.nvim", -- Bridge between Mason and LSP-Config
-        "neovim/nvim-lspconfig", -- LSP client for Neovim
         "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = function()
@@ -20,6 +19,7 @@ return {
             },
         })
         require("mason-tool-installer").setup({
+            "stylua", -- lua formatter
             "lua-language-server",
             "typescript-language-server",
         })

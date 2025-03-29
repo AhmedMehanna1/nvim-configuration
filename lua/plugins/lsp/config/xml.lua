@@ -1,5 +1,3 @@
 local lspconfig = require("lspconfig")
 
-lspconfig.jsonls.setup({})
-
-return {}
+lspconfig.lemminx.setup({})

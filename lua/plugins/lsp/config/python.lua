@@ -12,5 +12,3 @@ lspconfig.pyright.setup({
         },
     },
 })
-
-return {}

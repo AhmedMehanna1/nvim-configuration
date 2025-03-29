@@ -13,5 +13,3 @@ lspconfig.gopls.setup({
         },
     },
 })
-
-return {}

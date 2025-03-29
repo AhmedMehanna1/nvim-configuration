@@ -17,5 +17,3 @@ lspconfig.rust_analyzer.setup({
         },
     },
 })
-
-return {}
