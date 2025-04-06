@@ -17,6 +17,7 @@ return {
                 "yamlls",
                 "lemminx",
             },
+            automatic_installation = true,
         })
         require("mason-tool-installer").setup({
             "stylua", -- lua formatter
@@ -24,6 +25,22 @@ return {
             "typescript-language-server",
             "bash-language-server",
             "shellcheck",
+        })
+
+        -- Default setup for all LSPs
+        local lspconfig = require("lspconfig")
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+        -- Default options for all LSPs
+        local default_opts = {
+            capabilities = capabilities,
+        }
+
+        -- Automatically set up all installed LSPs
+        require("mason-lspconfig").setup_handlers({
+            function(server_name)
+                lspconfig[server_name].setup(default_opts)
+            end,
         })
     end,
 }

@@ -4,7 +4,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = home .. "/.local/share/jdtls-workspace/" .. project_name
 
 -- Find the root directory of the project (e.g., where pom.xml or build.gradle is located)
-local root_markers = { "pom.xml", "build.gradle", "gradlew", "mvnw" }
+local root_markers = { ".git", "pom.xml", "build.gradle", "gradlew", "mvnw" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 
 if not root_dir then
@@ -12,8 +12,60 @@ if not root_dir then
     return
 end
 
+local function get_lombok_version_maven(root_dir)
+    local pom_path = root_dir .. "/pom.xml"
+    if vim.fn.filereadable(pom_path) == 0 then
+        return nil
+    end
+
+    -- Read the pom.xml file
+    local pom_content = vim.fn.readfile(pom_path)
+    local in_lombok_dependency = false
+
+    for _, line in ipairs(pom_content) do
+        -- Check if we are inside the Lombok dependency block
+        if line:match([[<groupId>org%.projectlombok</groupId>]]) then
+            in_lombok_dependency = true
+        elseif in_lombok_dependency and line:match([[</dependency>]]) then
+            -- Exit the Lombok dependency block
+            break
+        elseif in_lombok_dependency then
+            -- Match the version tag
+            local match = line:match([[<version>(%d+%.%d+%.%d+)</version>]])
+            if match then
+                return match
+            end
+        end
+    end
+
+    return nil
+end
+
+local function get_lombok_path()
+    -- Try to detect the build system
+    local lombok_version = get_lombok_version_maven(root_dir)
+
+    if not lombok_version then
+        vim.notify("Could not determine Lombok version. Using default.", vim.log.levels.WARN)
+        lombok_version = "1.18.34" -- Default version
+    end
+
+    -- Construct the Lombok path
+    return string.format(
+        "%s/.m2/repository/org/projectlombok/lombok/%s/lombok-%s.jar",
+        home,
+        lombok_version,
+        lombok_version
+    )
+end
+
 -- Path to Lombok jar (adjust based on your installation)
-local lombok_path = home .. "/.m2/repository/org/projectlombok/lombok/1.18.28/lombok-1.18.28.jar"
+-- Get Lombok path
+local lombok_path = get_lombok_path()
+if not vim.fn.filereadable(lombok_path) then
+    vim.notify("Lombok jar not found at " .. lombok_path, vim.log.levels.ERROR)
+    return
+end
 
 -- Configuration for jdtls
 local config = {

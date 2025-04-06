@@ -23,6 +23,35 @@ return {
             bash = { "shellcheck" },
         }
 
+        -- Define a custom linter for checkstyle
+        lin.linters.checkstyle = {
+            cmd = "checkstyle",
+            args = function()
+                -- Dynamically locate the checkstyle.xml file in the project root
+                local root_dir = require("lint.utils").find_root({ ".git", "pom.xml", "build.gradle" })
+                if not root_dir then
+                    vim.notify("Could not find project root for checkstyle.", vim.log.levels.WARN)
+                    return {}
+                end
+
+                -- Construct the path to checkstyle.xml
+                local config_path = root_dir .. "/checkstyle.xml"
+                if not vim.fn.filereadable(config_path) then
+                    vim.notify("checkstyle.xml not found at " .. config_path, vim.log.levels.WARN)
+                    return {}
+                end
+
+                return {
+                    "-c",
+                    config_path, -- Specify the configuration file
+                    "--format",
+                    "plain", -- Output format
+                    "-", -- Read from stdin
+                }
+            end,
+            stdin = true,
+        }
+
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
         vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
