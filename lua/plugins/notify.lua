@@ -3,9 +3,9 @@ return {
     opts = {
         -- Optional: Customize notification behavior
         stages = "fade_in_slide_out", -- Animation style (e.g., "fade", "slide", "static")
-        timeout = 3000,              -- Time in milliseconds before notifications disappear
+        timeout = 3000, -- Time in milliseconds before notifications disappear
         background_colour = "#000000", -- Background color for notifications
-        level = 2,                   -- Minimum log level to display (2 = WARN)
+        level = 2, -- Minimum log level to display (2 = WARN)
     },
     config = function(_, opts)
         -- Load the plugin and apply settings

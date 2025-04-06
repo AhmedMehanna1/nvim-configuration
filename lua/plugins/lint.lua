@@ -16,15 +16,12 @@ return {
             c = { "cppcheck" },
             cpp = { "cppcheck" },
             java = { "checkstyle" },
-            python = { "flake8" },
-            javascript = { "eslint_d" },
-            typescript = { "eslint_d" },
             lua = { "luacheck" },
             bash = { "shellcheck" },
         }
 
         -- Define a custom linter for checkstyle
-        lin.linters.checkstyle = {
+        lint.linters.checkstyle = {
             cmd = "checkstyle",
             args = function()
                 -- Dynamically locate the checkstyle.xml file in the project root
